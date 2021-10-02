@@ -30,7 +30,7 @@ function changeStyles(bg, w, heading) {
 // New game reset - Again button logic
 function startNewGame() {
   secretNumber = Math.trunc(Math.random() * 20 + 1);
-  console.log(secretNumber);
+  // console.log(secretNumber);
   score = 20;
   chageScore(20);
   document.querySelector('.guess').value = '';
