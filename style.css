@@ -13,24 +13,24 @@ html {
 
 body {
   font-family: 'Press Start 2P', sans-serif;
-  color: rgb(133, 3, 3);
+  color: #df0303;
   background-color: rgb(11, 3, 85);
   /* background-color: #fdb927; */
   /* background-color: #60b347; */
   /* background-color: #070807; */
-  border: 12px solid rgb(133, 3, 3);
+  border: 12px solid #df0303;
 }
 
 /* LAYOUT */
 header {
   position: relative;
   height: 35vh;
-  border-bottom: 7px solid rgb(133, 3, 3);
+  border-bottom: 7px solid #df0303;
 }
 
 main {
   height: 62vh;
-  color: rgb(133, 3, 3);
+  color: #df0303;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -87,7 +87,7 @@ h1 {
 
 .guess {
   background: none;
-  border: 4px solid rgb(133, 3, 3);
+  border: 4px solid #df0303;
   font-family: inherit;
   color: inherit;
   font-size: 5rem;

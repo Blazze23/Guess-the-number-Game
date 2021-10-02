@@ -76,7 +76,7 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.guess').value = '';
   changeMessage('Start guessing...');
   changeNumber('?');
-  changeStyles('rgb(11, 3, 85', '15rem', 'Guess the Number!');
+  changeStyles('#df0303', '15rem', 'Guess the Number!');
 });
 
 // Input change event
