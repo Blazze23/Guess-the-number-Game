@@ -2,4 +2,4 @@ Guess the Number game is a fun game where the player is guessing a number betwee
 
 ------------------------------------------------------------------------
 
-Live preview of the game is available at: 
+Live preview of the game is available at: https://whatsthenumbergame.netlify.app/
