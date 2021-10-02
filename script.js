@@ -27,8 +27,35 @@ function changeStyles(bg, w, heading) {
   document.querySelector('.heading').textContent = heading;
 }
 
-// Check number Logic ✅
-document.querySelector('.check').addEventListener('click', function () {
+// New game reset - Again button logic
+function startNewGame() {
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  console.log(secretNumber);
+  score = 20;
+  chageScore(20);
+  document.querySelector('.guess').value = '';
+  changeMessage('Start guessing...');
+  changeNumber('?');
+  changeStyles('#0b0355', '15rem', "What's the Number!");
+}
+
+// Input reset when guess is not valid
+function inputReset(event) {
+  const input = event.target;
+  if (isNaN(input.value) || input.value <= 0 || input.value > 20) {
+    input.value = '';
+  }
+}
+
+// Checking if screen size is mobile - so that we can reset input on wrong guess, so that you don't have to erase previous guess, while on large screens you can change guess value on the input itself
+const isMobile = function () {
+  const width = window.innerWidth;
+  if (width <= 700) return true;
+};
+isMobile();
+
+// Check button logic
+function checkValue() {
   const guess = Number(document.querySelector('.guess').value);
   // console.log(guess);
 
@@ -56,6 +83,9 @@ document.querySelector('.check').addEventListener('click', function () {
       changeMessage(guess > secretNumber ? '📈 Too High' : '📉 Too Low');
       score--;
       chageScore(score);
+
+      // Reseting input on mobile
+      if (isMobile()) document.querySelector('.guess').value = '';
     } else if (score === 1) {
       score--;
       chageScore(score);
@@ -65,24 +95,21 @@ document.querySelector('.check').addEventListener('click', function () {
       chageScore(score);
     }
   }
+}
+// Adding Check button listener
+document.querySelector('.check').addEventListener('click', checkValue);
+
+//  Adding Again buttton listener
+document.querySelector('.again').addEventListener('click', startNewGame);
+
+// Adding Input listener
+document.querySelector('.guess').addEventListener('change', inputReset);
+
+// Adding Enter key listener to check button
+document.addEventListener('keydown', function (event) {
+  const enterButton = event.key;
+  if (enterButton === 'Enter') checkValue();
 });
 
-//  Again buttton logic - reseting all
-document.querySelector('.again').addEventListener('click', function () {
-  secretNumber = Math.trunc(Math.random() * 20 + 1);
-  // console.log(secretNumber)
-  score = 20;
-  chageScore(20);
-  document.querySelector('.guess').value = '';
-  changeMessage('Start guessing...');
-  changeNumber('?');
-  changeStyles('#0b0355', '15rem', "What's the Number!");
-});
-
-// Input change event
-document.querySelector('.guess').addEventListener('change', function (event) {
-  const input = event.target;
-  if (isNaN(input.value) || input.value <= 0 || input.value > 20) {
-    input.value = '';
-  }
-});
+// Adding screen width listener - so that we can reset input on mobile when the guess is wrong
+window.addEventListener('resize', isMobile);
