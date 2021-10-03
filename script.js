@@ -1,30 +1,42 @@
 'use strict';
 
+// Variables
 let secretNumber = Math.trunc(Math.random() * 20 + 1); // Generating 1-20 number
 let score = 20;
 let highscore = 0;
 // console.log(secretNumber);
 
+// Node elements
+const messageNodeEl = document.querySelector('.message');
+const scoreNodeEl = document.querySelector('.score');
+const numberNodeEl = document.querySelector('.number');
+const bodyNodeEl = document.querySelector('body');
+const headingNodeEl = document.querySelector('.heading');
+const guessNodeEl = document.querySelector('.guess');
+const highscoreNodeEl = document.querySelector('.highscore');
+const checkNodeEl = document.querySelector('.check');
+const againNodeEl = document.querySelector('.again');
+
 // Changing message according to gameplay
 function changeMessage(message) {
-  document.querySelector('.message').textContent = message;
+  messageNodeEl.textContent = message;
 }
 
 // Changing score according to gameplay
 function chageScore(score) {
-  document.querySelector('.score').textContent = score;
+  scoreNodeEl.textContent = score;
 }
 
 // Switching ? to Number and back to ?
 function changeNumber(number) {
-  document.querySelector('.number').textContent = number;
+  numberNodeEl.textContent = number;
 }
 
 // Switching styles for winning and reset
 function changeStyles(bg, w, heading) {
-  document.querySelector('body').style.backgroundColor = bg;
-  document.querySelector('.number').style.width = w;
-  document.querySelector('.heading').textContent = heading;
+  bodyNodeEl.style.backgroundColor = bg;
+  numberNodeEl.style.width = w;
+  headingNodeEl.textContent = heading;
 }
 
 // New game reset - Again button logic
@@ -33,7 +45,7 @@ function startNewGame() {
   // console.log(secretNumber);
   score = 20;
   chageScore(20);
-  document.querySelector('.guess').value = '';
+  guessNodeEl.value = '';
   changeMessage('Start guessing...');
   changeNumber('?');
   changeStyles('#0b0355', '15rem', "What's the Number!");
@@ -56,7 +68,7 @@ isMobile();
 
 // Check button logic
 function checkValue() {
-  const guess = Number(document.querySelector('.guess').value);
+  const guess = Number(guessNodeEl.value);
   // console.log(guess);
 
   // Case 1 - when there is no input
@@ -73,7 +85,7 @@ function checkValue() {
     // Cheking and setting highscore
     if (score > highscore) {
       highscore = score;
-      document.querySelector('.highscore').textContent = highscore;
+      highscoreNodeEl.textContent = highscore;
     }
   }
 
@@ -85,7 +97,7 @@ function checkValue() {
       chageScore(score);
 
       // Reseting input on mobile
-      if (isMobile()) document.querySelector('.guess').value = '';
+      if (isMobile()) guessNodeEl.value = '';
     } else if (score === 1) {
       score--;
       chageScore(score);
@@ -97,13 +109,13 @@ function checkValue() {
   }
 }
 // Adding Check button listener
-document.querySelector('.check').addEventListener('click', checkValue);
+checkNodeEl.addEventListener('click', checkValue);
 
 //  Adding Again buttton listener
-document.querySelector('.again').addEventListener('click', startNewGame);
+againNodeEl.addEventListener('click', startNewGame);
 
 // Adding Input listener
-document.querySelector('.guess').addEventListener('change', inputReset);
+guessNodeEl.addEventListener('change', inputReset);
 
 // Adding Enter key listener to check button
 document.addEventListener('keydown', function (event) {
